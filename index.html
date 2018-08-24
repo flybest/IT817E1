@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Execise1-Home</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<div class="header">
+		<ul class='menu'>
+			<li>
+				<a href="index.html" class="item active">Home</a>
+			</li>
+			<li>
+				<a href="map.html" class="item">My City</a>
+			</li>
+			<li>
+				<a href="map-search.html" class="item">My City (With Search)</a>
+			</li>
+			<li>
+				<a href="weather.html" class="item">Weather</a>
+			</li>
+			<li>
+				<a href="other.html" class="item">Other</a>
+			</li>
+		</ul>
+	</div>
+	<div class="wrapper">
+		<div id="new" class="hidden">
+			<div class="title animated bounceInDown">Hi, Tell Me Your Name, I Will Remember You</div>
+			<div class="input-area">
+				<input type="text" id="name" name="name"  onkeypress="inputName(event)">
+				<button type="submit" onclick="newCookie()">Done</button>
+			</div>
+		</div>
+		<div id="current" class="hidden">
+			<div class="title  animated flash" id="welcome"></div>
+			<div class="input-area">
+				<button type="submit" onclick="deleteCookie()">Forget Me</button>
+			</div>
+		</div>
+		<div id="loading" class="">
+			<div class="title">
+				<img src="images/loading.gif" alt="">
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="copyright">©Copyright Peter</div>
+	</div>
+
+	<script>
+		(function init(){
+			document.getElementById('loading').classList.add('hidden');
+			
+			if(checkCookie()){
+				document.getElementById('welcome').innerHTML = 'Welcome '+ getCookie('name');
+				document.getElementById('new').classList.add('hidden');
+				document.getElementById('current').classList.remove('hidden');
+			}
+			else{
+				document.getElementById('welcome').innerHTML = '';
+				document.getElementById('current').classList.add('hidden');
+				document.getElementById('new').classList.remove('hidden');
+			}
+		})();
+
+		function checkCookie(){
+			return (document.cookie!='undefined') && (getCookie('name')!='');
+		}
+
+		function inputName(e){
+			if(e && e.keyCode && e.keyCode == 13){
+				newCookie()
+			}
+		}
+
+		function newCookie(){
+			var name = document.getElementById('name').value
+			if(name!=''){
+				setCookie('name',document.getElementById('name').value,1);
+				window.location.reload();
+			}
+		};
+
+		function deleteCookie(){
+			document.cookie = setCookie('name', getCookie('name'), -10);
+			window.location.reload();
+		}
+
+		function setCookie(cname,cvalue,exdays)
+		{
+			var d = new Date();
+			d.setTime(d.getTime()+(exdays*24*60*60*1000));
+			var expires = "expires="+d.toGMTString();
+			document.cookie = cname + "=" + cvalue + "; " + expires;
+		}
+
+		function getCookie(cname)
+		{
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) 
+			{
+				var c = ca[i].trim();
+				if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+			}
+			return "";
+		}
+	</script>
+</body>
+</html>

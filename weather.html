@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Execise1-Weather</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/weather.css">
+	<style>
+		#map {
+        	height: 100%;
+      	}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<ul class='menu'>
+			<li>
+				<a href="index.html" class="item">Home</a>
+			</li>
+			<li>
+				<a href="map.html" class="item">My City</a>
+			</li>
+			<li>
+				<a href="map-search.html" class="item">My City (With Search)</a>
+			</li>
+			<li>
+				<a href="weather.html" class="item active">Weather</a>
+			</li>
+			<li>
+				<a href="other.html" class="item">Other</a>
+			</li>
+		</ul>
+	</div>
+	<div class="wrapper">
+		<div class="weather-container hidden" id="weather">
+			
+		</div>
+		<div id="map"></div>
+	</div>
+	<div class="footer">
+		<div class="copyright">©Copyright Peter</div>
+	</div>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+	<script>
+		var map;
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: 39.904844, lng: 116.387819 },
+				zoom: 10
+			});
+
+			var weatherContorl=document.getElementById('weather');
+			map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(weatherContorl);
+			google.maps.event.addDomListenerOnce(map,'tilesloaded',function(){
+				weatherContorl.classList.remove('hidden');
+				loadWeather();
+	        });
+
+			map.addListener('center_changed', function() {
+				loadWeather();
+	        });
+	        
+		}
+
+		function loadWeather(){
+			var center = map.getCenter();
+			$.simpleWeather({
+				location: center.lat()+','+center.lng(),
+				woeid: '',
+				unit: 'c',
+				success: function(weather) {
+					html = '<div class="city">'+weather.city+'</div>';
+					html += '<div class="main"><div class="weather-conditon"><img src="images/weathericons/'+weather.code+'.svg"></div>';
+					// html += '<div class="weather-conditon"><i class="icon-'+weather.code+'"></i></div>';
+					html += '<div class="temperature">'+weather.temp+'&deg;'+weather.units.temp+'</div></div>';
+					html += '<div class="other"><img class="dropicon" src="images/Droplet.svg"><span>'+ weather.humidity + '%'+'</span><img class="windicon" src="images/Wind.svg"><span>'  + weather.wind.speed + ' '+ weather.units.speed +'</span></div>';
+					$("#weather").html(html);
+				},
+				error: function(error) {
+					$("#weather").html('<div class="error">'+error+'</div>');
+				}
+			});
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAriNAlI7feP_m57jOjfeKN6sm5pSno_5w&callback=initMap" async defer></script>
+</body>
+</html>
