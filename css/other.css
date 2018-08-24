@@ -27,13 +27,19 @@
 	opacity: .8;
 }
 
-.stage .container:after{
+.stage,
+.stage .container,
+.stage .container .pic{
+	transition: all .8s ease-out;
+}
+
+.stage-2d .container-2d:after{
 	clear:both;
 	display: table;
     content: " "
 }
 
-.stage .container .pic{
+.stage-2d .container-2d .pic-2d{
 	width:25%;
 	height:300px;
 	float:left;
@@ -54,7 +60,6 @@
 	width:200px;
 	height:150px;
 	transform-style: preserve-3d;
-	transition: all .8s ease-out;
 	left:50%;
 	margin-left: -100px;
 

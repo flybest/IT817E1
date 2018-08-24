@@ -32,37 +32,21 @@
 		<div class="input-area">
 			<button type="submit" id="transform">Transform</button>
 		</div>
-		<div id="stage" class="stage">
+		<div id="stage" class="stage stage-2d">
 			<a class="arrow prev hidden"><</a>
 			<a class="arrow next hidden">></a>
-			<div id="container" class="container" >
-				<img class="pic" src="images/beijing/1.jpg" alt="">
-				<img class="pic" src="images/beijing/2.jpg" alt="">
-				<img class="pic" src="images/beijing/3.jpg" alt="">
-				<img class="pic" src="images/beijing/4.jpg" alt="">
-				<img class="pic" src="images/beijing/5.jpg" alt="">
-				<img class="pic" src="images/beijing/6.jpg" alt="">
-				<img class="pic" src="images/beijing/7.jpg" alt="">
-				<img class="pic" src="images/beijing/8.jpg" alt="">
-				<img class="pic" src="images/beijing/9.jpg" alt="">
+			<div id="container" class="container container-2d" >
+				<img class="pic pic-2d" src="images/beijing/1.jpg" alt="">
+				<img class="pic pic-2d" src="images/beijing/2.jpg" alt="">
+				<img class="pic pic-2d" src="images/beijing/3.jpg" alt="">
+				<img class="pic pic-2d" src="images/beijing/4.jpg" alt="">
+				<img class="pic pic-2d" src="images/beijing/5.jpg" alt="">
+				<img class="pic pic-2d" src="images/beijing/6.jpg" alt="">
+				<img class="pic pic-2d" src="images/beijing/7.jpg" alt="">
+				<img class="pic pic-2d" src="images/beijing/8.jpg" alt="">
+				<img class="pic pic-2d" src="images/beijing/9.jpg" alt="">
 			</div>
 		</div>
-
-		<!-- <div id="stage" class="stage-3d">
-			<a class="arrow prev"><</a>
-			<a class="arrow next">></a>
-			<div id="container" class="container-3d" >
-				<img class="pic-3d" src="images/beijing/1.jpg" alt="">
-				<img class="pic-3d" src="images/beijing/2.jpg" alt="">
-				<img class="pic-3d" src="images/beijing/3.jpg" alt="">
-				<img class="pic-3d" src="images/beijing/4.jpg" alt="">
-				<img class="pic-3d" src="images/beijing/5.jpg" alt="">
-				<img class="pic-3d" src="images/beijing/6.jpg" alt="">
-				<img class="pic-3d" src="images/beijing/7.jpg" alt="">
-				<img class="pic-3d" src="images/beijing/8.jpg" alt="">
-				<img class="pic-3d" src="images/beijing/9.jpg" alt="">
-			</div>
-		</div> -->
 	</div>
 
 	<!-- The Modal -->
@@ -119,18 +103,18 @@
 			var style='';
 			$('#transform').click(function(){
 				if (status=='2d'){
-					$('.stage').removeClass('stage').addClass('stage-3d');
-					$('.container').removeClass('container').addClass('container-3d').attr("style", style);
-					$('.pic').removeClass('pic').addClass('pic-3d');
+					$('.stage').removeClass('stage-2d').addClass('stage-3d');
+					$('.container').removeClass('container-2d').addClass('container-3d').attr("style", style);
+					$('.pic').removeClass('pic-2d').addClass('pic-3d');
 					$('.arrow').removeClass('hidden');
 					status='3d'
 				}
 				else{
-					style=$('.container-3d').attr('style');
+					style=$('.container').attr('style');
 
-					$('.stage-3d').removeClass('stage-3d').addClass('stage');
-					$('.container-3d').removeClass('container-3d').addClass('container').removeAttr("style");
-					$('.pic-3d').removeClass('pic-3d').addClass('pic');
+					$('.stage').removeClass('stage-3d').addClass('stage-2d');
+					$('.container').removeClass('container-3d').addClass('container-2d').removeAttr("style");
+					$('.pic').removeClass('pic-3d').addClass('pic-2d');
 					$('.arrow').addClass('hidden');
 					status='2d'
 				}
