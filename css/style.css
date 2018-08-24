@@ -60,6 +60,7 @@ input:focus, textarea:focus, button:focus {
 
 .wrapper{
 	height:calc(100% - 96px);
+	overflow:hidden;
 }
 
 .footer{

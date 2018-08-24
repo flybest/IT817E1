@@ -1,0 +1,131 @@
+.wrap{
+	padding-bottom: 60px;
+}
+
+.wrap .input-area{
+	text-align:center;
+	padding:15px 0;
+}
+
+.wrap .input-area button[type="submit"]{
+	height:50px;
+	padding:10px 20px;
+	font-size:1.5em;
+	text-align:center;
+	background-color: tomato;
+	border:none;
+	color:#fff;
+	cursor:pointer;
+	transition: all .5s;
+}
+
+.wrap .input-area button[type="submit"]:hover{
+	background-color: #fd310d;
+}
+
+.wrap .input-area button[type="submit"]:active{
+	opacity: .8;
+}
+
+.stage .container:after{
+	clear:both;
+	display: table;
+    content: " "
+}
+
+.stage .container .pic{
+	width:25%;
+	height:300px;
+	float:left;
+	padding: 10px 10px;
+}
+
+.stage-3d{
+	position: relative;
+	perspective: 800px;
+	margin:0 auto;
+	padding-top: 100px;
+	width:900px;
+	min-height: 150px;
+}
+
+.stage-3d .container-3d{
+	position: absolute;
+	width:200px;
+	height:150px;
+	transform-style: preserve-3d;
+	transition: all .8s ease-out;
+	left:50%;
+	margin-left: -100px;
+
+}
+
+.stage-3d .arrow{
+	position: absolute;
+	display: block;
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+	background-color: rgba(0,0,0,.5);
+	color:#fff;
+	top:120%;
+	text-align: center;
+	font-size: 50px;
+	line-height: 50px;
+	cursor:pointer;
+}
+
+.stage-3d .arrow:hover{
+	background-color: rgba(0,0,0,.8);
+}
+
+.stage-3d .arrow.prev{
+	left:0;
+}
+
+.stage-3d .arrow.next{
+	right:0;
+}
+
+.stage-3d .container-3d .pic-3d{
+	width:200px;
+	height:150px;
+	position:absolute;
+	box-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(1){
+	transform: rotateY(0deg) translateZ(294.687px);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(2){
+	transform: rotateY(40deg) translateZ(294.687px);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(3){
+	transform: rotateY(80deg) translateZ(294.687px);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(4){
+	transform: rotateY(120deg) translateZ(294.687px);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(5){
+	transform: rotateY(160deg) translateZ(294.687px);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(6){
+	transform: rotateY(200deg) translateZ(294.687px);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(7){
+	transform: rotateY(240deg) translateZ(294.687px);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(8){
+	transform: rotateY(280deg) translateZ(294.687px);
+}
+
+.stage-3d .container-3d .pic-3d:nth-of-type(9){
+	transform: rotateY(320deg) translateZ(294.687px);
+}

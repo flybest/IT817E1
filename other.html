@@ -5,6 +5,8 @@
 	<title>Execise1-Other</title>
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/other.css">
 </head>
 <body>
 	<div class="header">
@@ -26,11 +28,117 @@
 			</li>
 		</ul>
 	</div>
-	<div class="wrapper">
-		
+	<div class="wrap">
+		<div class="input-area">
+			<button type="submit" id="transform">Transform</button>
+		</div>
+		<div id="stage" class="stage">
+			<a class="arrow prev hidden"><</a>
+			<a class="arrow next hidden">></a>
+			<div id="container" class="container" >
+				<img class="pic" src="images/beijing/1.jpg" alt="">
+				<img class="pic" src="images/beijing/2.jpg" alt="">
+				<img class="pic" src="images/beijing/3.jpg" alt="">
+				<img class="pic" src="images/beijing/4.jpg" alt="">
+				<img class="pic" src="images/beijing/5.jpg" alt="">
+				<img class="pic" src="images/beijing/6.jpg" alt="">
+				<img class="pic" src="images/beijing/7.jpg" alt="">
+				<img class="pic" src="images/beijing/8.jpg" alt="">
+				<img class="pic" src="images/beijing/9.jpg" alt="">
+			</div>
+		</div>
+
+		<!-- <div id="stage" class="stage-3d">
+			<a class="arrow prev"><</a>
+			<a class="arrow next">></a>
+			<div id="container" class="container-3d" >
+				<img class="pic-3d" src="images/beijing/1.jpg" alt="">
+				<img class="pic-3d" src="images/beijing/2.jpg" alt="">
+				<img class="pic-3d" src="images/beijing/3.jpg" alt="">
+				<img class="pic-3d" src="images/beijing/4.jpg" alt="">
+				<img class="pic-3d" src="images/beijing/5.jpg" alt="">
+				<img class="pic-3d" src="images/beijing/6.jpg" alt="">
+				<img class="pic-3d" src="images/beijing/7.jpg" alt="">
+				<img class="pic-3d" src="images/beijing/8.jpg" alt="">
+				<img class="pic-3d" src="images/beijing/9.jpg" alt="">
+			</div>
+		</div> -->
 	</div>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<img width="100%" src="" >
+		</div>
+	</div>
+
 	<div class="footer">
-		<div class="copyright">©Copyright Peter</div>
+		<div class="copyright">©Copyright Peter&nbsp;&nbsp;&nbsp;Git: https://github.com/flybest/IT817E1.git</div>
 	</div>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script>
+
+		$('document').ready(function(){
+			var rotation = 0;
+			var container = $('.container');
+			// Get the modal
+			var modal = $('#myModal');
+			// Get the <span> element that closes the modal
+			var close = $(".close");
+
+			$('.prev').click(function(){
+				rotation -= 40;
+				container.css('transform','rotateY('+ rotation +'deg)');
+			})
+
+			$('.next').click(function(){
+				rotation += 40;
+				container.css('transform','rotateY('+ rotation +'deg)');
+			})
+
+			$('.pic').click(function(){
+				modal.css('display','block');
+				modal.find('img').attr('src',$(this).attr('src'));
+			})
+
+			// When the user clicks on <span> (x), close the modal
+			close.click(function() {
+			    modal.css('display','none');
+			})
+
+			// When the user clicks anywhere outside of the modal, close it
+			$(window).click(function(event) {
+			    if (event.target == modal[0]) {
+			        modal.css('display','none');
+			    }
+			})
+
+			var status='2d';
+			var style='';
+			$('#transform').click(function(){
+				if (status=='2d'){
+					$('.stage').removeClass('stage').addClass('stage-3d');
+					$('.container').removeClass('container').addClass('container-3d').attr("style", style);
+					$('.pic').removeClass('pic').addClass('pic-3d');
+					$('.arrow').removeClass('hidden');
+					status='3d'
+				}
+				else{
+					style=$('.container-3d').attr('style');
+
+					$('.stage-3d').removeClass('stage-3d').addClass('stage');
+					$('.container-3d').removeClass('container-3d').addClass('container').removeAttr("style");
+					$('.pic-3d').removeClass('pic-3d').addClass('pic');
+					$('.arrow').addClass('hidden');
+					status='2d'
+				}
+			})
+		})
+
+		
+
+	</script>
 </body>
 </html>
